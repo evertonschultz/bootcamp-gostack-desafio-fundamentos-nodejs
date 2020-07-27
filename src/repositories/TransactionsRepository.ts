@@ -11,6 +11,10 @@ interface CreateTransactionDTO {
   value: number;
   type: 'income' | 'outcome';
 }
+interface IncomeOutcome {
+  income: Transaction[];
+  outcome: Transaction[];
+}
 
 class TransactionsRepository {
   private transactions: Transaction[];
@@ -26,7 +30,10 @@ class TransactionsRepository {
 
   public getBalance(): Balance {
     // TODO
-    function agruparPor(objetoArray, propriedade) {
+    function agruparPor(
+      objetoArray: any[],
+      propriedade: string,
+    ): IncomeOutcome {
       return objetoArray.reduce(function (acc, obj) {
         const key = obj[propriedade];
         if (!acc[key]) {
